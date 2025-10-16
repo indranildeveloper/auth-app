@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Fira_Code } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const interSans = Inter({
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={`${interSans.variable} ${firaCode.variable} antialiased`}
       >
         {children}
+        <Toaster richColors />
       </body>
     </html>
   );
