@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
+import BetterAuthActionButton from "@/components/auth/BetterAuthActionButton";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
-import Link from "next/link";
 
 const HomePage = () => {
   const { data: session, isPending: loading } = authClient.useSession();
@@ -24,10 +25,13 @@ const HomePage = () => {
         ) : (
           <>
             <h1 className="text-3xl font-bold">Welcome {session.user.name}</h1>
-            {/* TODO: Add loading states */}
-            <Button variant="destructive" onClick={() => authClient.signOut()}>
+            <BetterAuthActionButton
+              variant="destructive"
+              // @ts-expect-error this is good
+              action={() => authClient.signOut()}
+            >
               Sign Out
-            </Button>
+            </BetterAuthActionButton>
           </>
         )}
       </div>

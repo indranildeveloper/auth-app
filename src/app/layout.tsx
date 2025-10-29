@@ -28,8 +28,10 @@ export default function RootLayout({
       <body
         className={`${interSans.variable} ${firaCode.variable} antialiased`}
       >
-        {children}
-        <Toaster richColors />
+        <main className="container mx-auto">
+          {children}
+          <Toaster richColors />
+        </main>
       </body>
     </html>
   );
