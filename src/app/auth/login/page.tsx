@@ -16,8 +16,9 @@ import { Separator } from "@/components/ui/separator";
 import SocialAuthButton from "@/components/auth/SocialAuthButton";
 import { authClient } from "@/lib/auth-client";
 import EmailVerificationTab from "@/components/auth/EmailVerificationTab";
+import ForgotPasswordTab from "@/components/auth/ForgotPasswordTab";
 
-type TTab = "signin" | "signup" | "email-verification";
+type TTab = "signin" | "signup" | "email-verification" | "forgot-password";
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -55,7 +56,10 @@ const LoginPage = () => {
             <CardTitle>Sign In</CardTitle>
           </CardHeader>
           <CardContent>
-            <SignInTab openEmailVerificationTab={openEmailVerificationTab} />
+            <SignInTab
+              openForgotPasswordTab={() => setSelectedTab("forgot-password")}
+              openEmailVerificationTab={openEmailVerificationTab}
+            />
           </CardContent>
           <Separator />
           <CardFooter className="grid grid-cols-2 gap-3">
@@ -84,6 +88,16 @@ const LoginPage = () => {
           </CardHeader>
           <CardContent>
             <EmailVerificationTab email={email} />
+          </CardContent>
+        </Card>
+      </TabsContent>
+      <TabsContent value="forgot-password">
+        <Card>
+          <CardHeader className="text-2xl font-bold">
+            <CardTitle>Reset your password</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ForgotPasswordTab openSignInTab={() => setSelectedTab("signin")} />
           </CardContent>
         </Card>
       </TabsContent>

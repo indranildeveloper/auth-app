@@ -28,8 +28,10 @@ type TSignInForm = z.infer<typeof signInSchema>;
 
 const SignInTab = ({
   openEmailVerificationTab,
+  openForgotPasswordTab,
 }: {
   openEmailVerificationTab: (email: string) => void;
+  openForgotPasswordTab: () => void;
 }) => {
   const router = useRouter();
   const form = useForm<TSignInForm>({
@@ -85,7 +87,18 @@ const SignInTab = ({
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <div className="flex justify-between items-center">
+                <FormLabel>Password</FormLabel>
+                <Button
+                  onClick={openForgotPasswordTab}
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="text-sm font-normal underline"
+                >
+                  Forgot Password?
+                </Button>
+              </div>
               <FormControl>
                 <PasswordInput placeholder="Your password" {...field} />
               </FormControl>
