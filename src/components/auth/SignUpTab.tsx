@@ -27,7 +27,11 @@ const signUpSchema = z.object({
 
 type TSignUpForm = z.infer<typeof signUpSchema>;
 
-const SignUpTab = () => {
+const SignUpTab = ({
+  openEmailVerificationTab,
+}: {
+  openEmailVerificationTab: (email: string) => void;
+}) => {
   const router = useRouter();
   const form = useForm<TSignUpForm>({
     resolver: zodResolver(signUpSchema),
@@ -41,7 +45,7 @@ const SignUpTab = () => {
   const { isSubmitting } = form.formState;
 
   const handleSignUp = async (data: TSignUpForm) => {
-    await authClient.signUp.email(
+    const response = await authClient.signUp.email(
       {
         ...data,
         callbackURL: "/",
@@ -56,6 +60,10 @@ const SignUpTab = () => {
         },
       }
     );
+
+    if (response.error == null && !response.data.user.emailVerified) {
+      openEmailVerificationTab(data.email);
+    }
   };
 
   return (
