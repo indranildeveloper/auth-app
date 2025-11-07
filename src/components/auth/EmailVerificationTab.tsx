@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth/auth-client";
 import BetterAuthActionButton from "./BetterAuthActionButton";
 
 const EmailVerificationTab = ({ email }: { email: string }) => {

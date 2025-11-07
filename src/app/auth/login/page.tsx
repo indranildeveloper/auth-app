@@ -14,7 +14,7 @@ import SignInTab from "@/components/auth/SignInTab";
 import SignUpTab from "@/components/auth/SignUpTab";
 import { Separator } from "@/components/ui/separator";
 import SocialAuthButton from "@/components/auth/SocialAuthButton";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth/auth-client";
 import EmailVerificationTab from "@/components/auth/EmailVerificationTab";
 import ForgotPasswordTab from "@/components/auth/ForgotPasswordTab";
 

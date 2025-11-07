@@ -3,7 +3,7 @@
 import Link from "next/link";
 import BetterAuthActionButton from "@/components/auth/BetterAuthActionButton";
 import { Button } from "@/components/ui/button";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth/auth-client";
 
 const HomePage = () => {
   const { data: session, isPending: loading } = authClient.useSession();

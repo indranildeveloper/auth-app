@@ -16,7 +16,7 @@ import { Input } from "../ui/input";
 import { PasswordInput } from "../ui/password-input";
 import { Button } from "../ui/button";
 import { LoadingSwap } from "../ui/loading-swap";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth/auth-client";
 import { toast } from "sonner";
 
 const signInSchema = z.object({

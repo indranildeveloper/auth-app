@@ -3,11 +3,19 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
 import { createAuthMiddleware } from "better-auth/api";
 import { db } from "@/drizzle/db";
-import { sendPasswordResetEmail } from "./emails/sendPasswordResetEmail";
-import { sendEmailVerificationEmail } from "./emails/sendEmailVerificationEmail";
-import { sendWelcomeEmail } from "./emails/sendWelcomeEmail";
+import { sendPasswordResetEmail } from "../emails/sendPasswordResetEmail";
+import { sendEmailVerificationEmail } from "../emails/sendEmailVerificationEmail";
+import { sendWelcomeEmail } from "../emails/sendWelcomeEmail";
 
 export const auth = betterAuth({
+  // user: {
+  //   additionalFields: {
+  //     favoriteNumber: {
+  //       type: "number",
+  //       required: true,
+  //     },
+  //   },
+  // },
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,

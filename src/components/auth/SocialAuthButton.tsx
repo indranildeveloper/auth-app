@@ -3,9 +3,9 @@
 import {
   SUPPORTED_OAUTH_PROVIDER_DETAILS,
   SUPPORTED_OAUTH_PROVIDERS,
-} from "@/lib/o-auth-providers";
+} from "@/lib/auth/o-auth-providers";
 import { FC } from "react";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth/auth-client";
 import BetterAuthActionButton from "./BetterAuthActionButton";
 
 const SocialAuthButton: FC = () => {
