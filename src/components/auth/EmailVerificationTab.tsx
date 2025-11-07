@@ -55,6 +55,4 @@ const EmailVerificationTab = ({ email }: { email: string }) => {
   );
 };
 
-// 01:24
-
 export default EmailVerificationTab;
