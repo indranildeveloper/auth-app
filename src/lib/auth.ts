@@ -1,9 +1,11 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
+import { createAuthMiddleware } from "better-auth/api";
 import { db } from "@/drizzle/db";
 import { sendPasswordResetEmail } from "./emails/sendPasswordResetEmail";
 import { sendEmailVerificationEmail } from "./emails/sendEmailVerificationEmail";
+import { sendWelcomeEmail } from "./emails/sendWelcomeEmail";
 
 export const auth = betterAuth({
   emailAndPassword: {
@@ -43,4 +45,18 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
+  hooks: {
+    after: createAuthMiddleware(async (ctx) => {
+      if (ctx.path.startsWith("/sign-up")) {
+        const user = ctx.context.newSession?.user ?? {
+          name: ctx.body.name,
+          email: ctx.body.email,
+        };
+
+        if (user != null) {
+          await sendWelcomeEmail(user);
+        }
+      }
+    }),
+  },
 });
